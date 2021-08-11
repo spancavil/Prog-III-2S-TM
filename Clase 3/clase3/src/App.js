@@ -1,18 +1,16 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import Footer from "./components/Footer/Footer";
 import Sidebar from './components/Sidebar/Sidebar';
+import Content from './components/Content/Content';
+import './app.css'
 
 function App() {
   return (
-  <React.Fragment>
-    {/* <Header/>
-    <Header/>
-    <Header/>
-    <h1>Hola estamos en la clase 03</h1>
-    <Footer/> */}
-    <Sidebar/>
-  </React.Fragment>
+    <div id="wrapper">
+      <Sidebar/>
+      
+      <Content/>
+    </div>
+  
   );
 }
 
