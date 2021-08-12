@@ -1,0 +1,5 @@
+1) de /Public sacar todo lo que no sea index.html
+2) /src :
+
+a) index.js => sacar el import /index.css
+b) limpiamos app.js
