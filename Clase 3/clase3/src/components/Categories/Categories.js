@@ -2,6 +2,7 @@ import React from 'react';
 import CardCategory from '../CardCategory/CardCategory';
 
 export default function Categories() {
+    const categories = ["Category 01", "Category 02", "Category 03", "Category 04", "Category 05", "Category 06"]
     return (
         <div className="col-lg-6 mb-4">
             <div className="card shadow mb-4">
@@ -10,12 +11,9 @@ export default function Categories() {
                 </div>
                 <div className="card-body">
                     <div className="row">
-                        <CardCategory/>
-                        <CardCategory/>
-                        <CardCategory/>
-                        <CardCategory/>
-                        <CardCategory/>
-                        <CardCategory/>
+                        {categories.map((category, index)=>{
+                            return <CardCategory category = {category} key={index}></CardCategory>
+                        })}
                     </div>
                 </div>
             </div>

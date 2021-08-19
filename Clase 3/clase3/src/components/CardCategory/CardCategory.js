@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default function CardCategory() {
+export default function CardCategory(props) {
     return (
-        <div class="col-lg-6 mb-4">
-            <div class="card bg-info text-white shadow">
-                <div class="card-body">
-                    Category 01
+        <div className="col-lg-6 mb-4">
+            <div className="card bg-info text-white shadow">
+                <div className="card-body">
+                    {props.category}
                 </div>
             </div>
         </div>

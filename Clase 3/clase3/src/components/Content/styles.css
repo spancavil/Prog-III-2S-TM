@@ -1,0 +1,9 @@
+.personajesContainer {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding: 10px;
+    margin: 3px;
+    background-color: darksalmon;
+}

@@ -1,0 +1,19 @@
+.character-card{
+    flex: 1 0 21%; /*Siempre será el 21% del container */
+    margin: 6px;
+    font-size: medium;
+    text-align: center;
+    color: white;
+    background-color: rgb(253, 98, 81);
+    border-radius: 10px;
+}
+.character-card img{
+    width: 70%; /* Es el 70% de la card*/
+    border-radius: 15px;
+    padding: 7px;
+    box-shadow: rgb(226, 127, 94);
+}
+
+.character-card h4{
+    font-size: medium;
+}
