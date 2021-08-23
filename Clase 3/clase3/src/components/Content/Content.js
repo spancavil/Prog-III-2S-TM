@@ -16,6 +16,9 @@ import pj8 from '../../assets/img/characters/luke.jpg';
 
 
 export default function Content() {
+
+    const personajes = [pj1, pj2, pj3, pj4, pj5, pj6, pj7, pj8]
+
     return (
         <div id="content-wrapper" className="d-flex flex-column">
             <NavBar />
@@ -24,7 +27,9 @@ export default function Content() {
                 <ContentRowStatistics />
                 <ContentRow2 />
                 <div className="personajesContainer">
-                    
+                    {personajes.map( imagen => {
+                        return <Personajes foto = {imagen}/>
+                    })}
                 </div>
             </div>
         </div>
