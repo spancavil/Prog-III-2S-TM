@@ -28,6 +28,25 @@ export default class ContainerPersonajes extends Component {
             })
             .catch(error => console.log(error));
     }
+    //Funcion de remover personaje
+    removerPersonaje(name){
+        //Obtengo el nombre del personaje que quiero eliminar mi array
+
+        //console.log(name);
+
+        //Permanecen en mi array "personajesFiltrados" aquellos personajes que NO tengan el nombre a filtrar
+        // !== significa distinto
+
+        const personajesFiltrados = this.state.characters.filter(character => character.name !== name)
+
+        //console.log(personajesFiltrados);
+
+        //Ultimo paso es setear el estado
+        this.setState({
+            characters: personajesFiltrados
+        })
+    }
+
 
     render() {
         console.log("Me estoy renderizando!")
@@ -43,7 +62,13 @@ export default class ContainerPersonajes extends Component {
                     < h4 > Cargando ... </h4>:
                     //no se cumple la condición
                     this.state.characters.map((character, index) => {
-                        return <Character key={index} name={character.name} photo={character.image} especie = {character.species} estado = {character.status}/>
+                        return <Character key={index}
+                        name={character.name}
+                        photo={character.image}
+                        especie = {character.species}
+                        estado = {character.status}
+                        removerPersonaje = {(name)=>this.removerPersonaje(name)}
+                        />
                     })
                 }
             </div>

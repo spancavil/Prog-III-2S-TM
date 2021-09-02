@@ -1,0 +1,52 @@
+Creación del repositorio:
+-------------------------
+
+1) Crear el repo en github (al principio estará vacio)
+2) create-react-app para crear nuestro proyecto (en local). Esto lo hace 1 integrante del grupo.
+3) Posicionarse en la carpeta del proyecto
+4) Set username y email (esto deben hacerlo todos):
+ 
+ git config --global user.name "MI_NOMBRE_DE_USUARIO"
+ git config --global user.email "MY_NAME@example.com"
+
+5)Agrega el link de nuestro repo a "origin"
+git remote add origin <link-a-mi-proyecto-github>
+
+6) Me cambia el nombre de la rama a main
+git branch -M main
+
+7) Agrego los cambios que hice a mi repo
+git add .
+
+8) Commiteo los cambios para que queden en forma permanente
+git commit -m "Mensaje descriptivo de lo que hice"
+
+9) Subo mi repo a la rama main
+git push -u origin main
+
+
+Los demas integrantes:
+----------------------
+
+git clone <link>
+
+
+Cada vez que se hacen cambios:
+------------------------------
+
+git add .
+git commmit -m "el mensaje del commit"
+git push origin main
+
+Y para que los integrantes vean dicho cambio:
+---------------------------------------------
+
+git pull origin main
+
+EN CIERTOS CASOS:
+
+Cuando quieran pushear algo (como le ocurrió a Joni Brener) les solicitará usuario y contraseña.
+En tal caso deben generar un token que deben copiar y pegar.
+Acá tienen un paso a paso de esto:
+https://docs.github.com/es/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+Preguntarnos cualquier cosa
