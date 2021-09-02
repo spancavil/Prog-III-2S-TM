@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Character from '../Character/Character';
+import './style.css'
 
 //Mi container contiene la lógica de traer datos y renderizarlos utilizando condiciones y map.
 
@@ -36,7 +37,7 @@ export default class ContainerPersonajes extends Component {
         // condicion ? Se cumple : No se cumple
 
         return (
-            <div>
+            <div className = 'container'>
                 {this.state.characters === [] ?
                     //se cumple la condición
                     < h4 > Cargando ... </h4>:
