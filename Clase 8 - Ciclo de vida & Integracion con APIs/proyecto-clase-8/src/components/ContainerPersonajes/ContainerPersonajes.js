@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Character from '../Character/Character';
+import FiltroPorNombre from '../FiltroPorNombre/FiltroPorNombre';
 import './style.css'
 
 //Mi container contiene la lógica de traer datos y renderizarlos utilizando condiciones y map.
@@ -8,23 +9,29 @@ export default class ContainerPersonajes extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            characters: []
+            characters: [],
+            filteredCharacters: []
         }
     }
 
     //Hacemos el llamado a la API de RICK and Morty apenas se monta el componente
 
     componentDidMount() {
-        fetch('https://rickandmortyapi.com/api/character')
+        fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks')
             .then(response => { return response.json() })
             .then(data => {
                 //console.log(data.results);
                 //let personajes = data.results;
 
                 //A la información que obtengo la guardo en el estado dentro de una propiedad
-                this.setState({
-                    characters: data.results
-                })
+                console.log(data)
+                
+                /* this.setState({
+                    characters: data.results, //no va a cambiar
+                    filteredCharacters: data.results //va variando de acuerdo al input
+                }) */
+
+
             })
             .catch(error => console.log(error));
     }
@@ -43,25 +50,41 @@ export default class ContainerPersonajes extends Component {
 
         //Ultimo paso es setear el estado
         this.setState({
-            characters: personajesFiltrados
+            characters: personajesFiltrados,
+            filteredCharacters: personajesFiltrados
         })
     }
 
+    filtrarPorNombre(nombreAFiltrar){
+        console.log(nombreAFiltrar);
+        const arrayFiltrada = this.state.characters.filter(
+            character => character.name.toLowerCase().includes(nombreAFiltrar.toLowerCase())
+        );
+        if(nombreAFiltrar === ""){
+            this.setState({
+                filteredCharacters: this.state.characters
+            })
+        } else {
+            this.setState({
+                filteredCharacters: arrayFiltrada
+            })
+        } 
+    }
 
     render() {
         console.log("Me estoy renderizando!")
-        console.log(this.state.characters);
-
+        console.log(this.state.filteredCharacters);
         //if ternario
         // condicion ? Se cumple : No se cumple
 
         return (
             <div className = 'container'>
+                <FiltroPorNombre filtrarPorNombre={(nombreAFiltrar)=>this.filtrarPorNombre(nombreAFiltrar)} />
                 {this.state.characters === [] ?
                     //se cumple la condición
                     < h4 > Cargando ... </h4>:
                     //no se cumple la condición
-                    this.state.characters.map((character, index) => {
+                    this.state.filteredCharacters.map((character, index) => {
                         return <Character key={index}
                         name={character.name}
                         photo={character.image}
