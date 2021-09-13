@@ -17,7 +17,7 @@ export default class ContainerPersonajes extends Component {
     //Hacemos el llamado a la API de RICK and Morty apenas se monta el componente
 
     componentDidMount() {
-        fetch('https://thingproxy.freeboard.io/fetch/https://api.deezer.com/chart/0/tracks')
+        fetch('https://rickandmortyapi.com/api/character')
             .then(response => { return response.json() })
             .then(data => {
                 //console.log(data.results);
@@ -25,18 +25,18 @@ export default class ContainerPersonajes extends Component {
 
                 //A la información que obtengo la guardo en el estado dentro de una propiedad
                 console.log(data)
-                
-                /* this.setState({
+
+                this.setState({
                     characters: data.results, //no va a cambiar
                     filteredCharacters: data.results //va variando de acuerdo al input
-                }) */
+                }) 
 
 
             })
             .catch(error => console.log(error));
     }
     //Funcion de remover personaje
-    removerPersonaje(name){
+    removerPersonaje(name) {
         //Obtengo el nombre del personaje que quiero eliminar mi array
 
         //console.log(name);
@@ -55,12 +55,12 @@ export default class ContainerPersonajes extends Component {
         })
     }
 
-    filtrarPorNombre(nombreAFiltrar){
+    filtrarPorNombre(nombreAFiltrar) {
         console.log(nombreAFiltrar);
         const arrayFiltrada = this.state.characters.filter(
             character => character.name.toLowerCase().includes(nombreAFiltrar.toLowerCase())
         );
-        if(nombreAFiltrar === ""){
+        if (nombreAFiltrar === "") {
             this.setState({
                 filteredCharacters: this.state.characters
             })
@@ -68,7 +68,7 @@ export default class ContainerPersonajes extends Component {
             this.setState({
                 filteredCharacters: arrayFiltrada
             })
-        } 
+        }
     }
 
     render() {
@@ -78,19 +78,19 @@ export default class ContainerPersonajes extends Component {
         // condicion ? Se cumple : No se cumple
 
         return (
-            <div className = 'container'>
-                <FiltroPorNombre filtrarPorNombre={(nombreAFiltrar)=>this.filtrarPorNombre(nombreAFiltrar)} />
+            <div className='container'>
+                <FiltroPorNombre filtrarPorNombre={(nombreAFiltrar) => this.filtrarPorNombre(nombreAFiltrar)} />
                 {this.state.characters === [] ?
                     //se cumple la condición
-                    < h4 > Cargando ... </h4>:
+                    < h4 > Cargando ... </h4> :
                     //no se cumple la condición
                     this.state.filteredCharacters.map((character, index) => {
                         return <Character key={index}
-                        name={character.name}
-                        photo={character.image}
-                        especie = {character.species}
-                        estado = {character.status}
-                        removerPersonaje = {(name)=>this.removerPersonaje(name)}
+                            name={character.name}
+                            photo={character.image}
+                            especie={character.species}
+                            estado={character.status}
+                            removerPersonaje={(name) => this.removerPersonaje(name)}
                         />
                     })
                 }

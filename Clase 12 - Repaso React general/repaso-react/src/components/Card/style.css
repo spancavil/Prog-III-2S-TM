@@ -1,0 +1,12 @@
+.card {
+    border-style: solid;
+    border-radius: 4px;
+    border-color: rgb(212, 77, 104);
+    background-color: salmon;
+    margin: 5px;
+    text-align: center;
+}
+
+.card img {
+    width: 100px;
+}
