@@ -14,15 +14,19 @@ export default class FilterField extends Component {
         evento.preventDefault();
     }
 
-    capturaInput() {
+    capturaInput(evento) {
+       this.setState({
+           valorInput: evento.target.value
+       }, ()=> this.props.filtroPorNombre(this.state.valorInput))
        
     }
 
     render() {
+        //console.log(this.state.valorInput)
         return (
             <form onSubmit={(evento) => this.prevenirSubmit(evento)}>
                 <label>Search: </label>
-                <input onChange={null} type="text" />
+                <input onChange={(evento)=>{this.capturaInput(evento)}} type="text" />
             </form>
         )
     }
