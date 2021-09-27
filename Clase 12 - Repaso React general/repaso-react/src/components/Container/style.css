@@ -1,7 +1,17 @@
-.container {
+.container-row {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.container-column{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
     margin: 1rem;

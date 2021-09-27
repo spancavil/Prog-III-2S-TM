@@ -9,7 +9,7 @@ export default class Character extends Component {
 
     render() {
         return (
-            <div className = 'card'>
+            <div className = {`card-${this.props.orientation}`}>
                <img src={this.props.photo} alt=""/>
                <h4> {this.props.name} </h4>
                <button onClick={()=> this.props.removerPersonaje(this.props.name)}> Eliminar</button>

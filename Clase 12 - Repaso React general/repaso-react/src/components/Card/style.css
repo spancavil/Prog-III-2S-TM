@@ -1,4 +1,4 @@
-.card {
+.card-row {
     border-style: solid;
     border-radius: 4px;
     border-color: rgb(212, 77, 104);
@@ -7,6 +7,20 @@
     text-align: center;
 }
 
-.card img {
+.card-row img {
     width: 100px;
+}
+
+.card-column {
+    border-style: solid;
+    border-radius: 4px;
+    border-color: rgb(212, 77, 104);
+    background-color: salmon;
+    margin: 5px;
+    width: 70%;
+    text-align: center;
+}
+
+.card-column img {
+    width: 30%;
 }

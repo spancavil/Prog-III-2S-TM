@@ -11,7 +11,8 @@ export default class Container extends Component {
         this.state = {
             datos: [],
             datosFiltrados: [],
-            page: 2
+            page: 2,
+            orientation: "row"
         }
     }
 
@@ -77,13 +78,27 @@ export default class Container extends Component {
         }
     }
 
+    changeOrientation(){
+
+    if (this.state.orientation === "row"){
+        this.setState({
+            orientation: "column"
+        })
+    } else {
+        this.setState({
+            orientation: "row"
+        })
+    }
+    }
+
     render() {
         console.log("Me estoy renderizando!")
         console.log(this.state.datosFiltrados)
         return (
-            <div className='container'>
+            <div className={`container-${this.state.orientation}`}>
                 <FilterField filtroPorNombre={(nombre)=>this.filtrarPorNombre(nombre)}/>
                 <button onClick={()=>this.addCards()}>Agregar mas</button>
+                <button onClick={()=>this.changeOrientation()}>Cambiar orientacion</button>
                 {this.state.datosFiltrados.length === 0 ?
                     
                     < h4 > Cargando ... </h4> :
@@ -92,6 +107,7 @@ export default class Container extends Component {
                         return <Card key={index}
                             name={element.title}
                             photo={`https://image.tmdb.org/t/p/w500/${element.poster_path}`}
+                            orientation={this.state.orientation}
                             removerPersonaje={(name) => this.removeCard(name)}
                         />
                     })
