@@ -1,0 +1,6 @@
+expo start -w => arrancamos el proyecto (abre 2 ventanas => 1) consola 2) el emulador web )
+npm start (idem expo start => sólo abre la consola )
+npm run web (lo mismo que expo start -w)
+
+Limpieza 
+1) En app.js limpiamos (borramos import, borramos el contenido del JSX)
