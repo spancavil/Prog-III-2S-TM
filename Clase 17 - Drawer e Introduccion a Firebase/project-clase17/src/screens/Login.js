@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
 import { Text, TextInput, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { auth } from '../firebase/config';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            loggedIn: false,
+            error: ""
         }
     }
 
     handleLogin() {
-        alert(`usuario: ${this.state.email}, password: ${this.state.password}`)
+        auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then( response => {
+            console.log(response);
+            alert("Usuario loggeado!");
+            this.setState({
+                loggedIn: true
+            })
+        })
+        .catch( response => {
+            console.log(response);
+            alert("Error en el loggeo");
+            this.setState({
+                error: "Error en loggeo"
+            })
+        })
     }
 
     render() {
+        console.log(this.state.loggedIn);
         return (
             <View style={styles.container}>
-                <Text>Login</Text>
+                <Text style={styles.text}>Login</Text>
                 <TextInput
                     style={styles.field}
                     keyboardType="email-address"
@@ -56,6 +74,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#0F00FF",
     },
     text: {
-        color: '#FFA400'
+        color: '#FFA400',
+        fontSize: 20
     }
 })
