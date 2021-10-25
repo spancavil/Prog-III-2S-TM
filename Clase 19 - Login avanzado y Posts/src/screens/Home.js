@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import Card from '../components/Card';
+import Post from '../components/Post';
+import { db } from '../firebase/config';
 
 export default class Home extends Component {
     constructor(props){
         super(props);
         this.state = {
-            characters: []
+            posts: []
         }
     }
     componentDidMount(){
-        fetch(' https://rickandmortyapi.com/api/character')
-        .then (response => response.json())
-        .then (data => this.setState ({
-            characters: data.results
-        }))
+        db.collection('posts').orderBy("createdAt", "desc").onSnapshot(
+            docs => {
+                let postsAux = [] //Variable auxiliar
+                docs.forEach( doc => {
+                    postsAux.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                })
+                this.setState({
+                    posts: postsAux
+                })
+            }
+        )
     }
-
     render(){
+        console.log(this.state.posts);
         return(
             <View>
                 <Text> Home </Text>
@@ -25,10 +35,10 @@ export default class Home extends Component {
                     <Text style = {styles.text}> Logout </Text>
                 </TouchableOpacity>
                 <FlatList
-                data = {this.state.characters}
-                keyExtractor = {character => character.id.toString()}
-                renderItem = { ({item }) => 
-                    <Card item = {item}></Card> }
+                data = {this.state.posts}
+                keyExtractor = {post => post.id.toString()}
+                renderItem = { ({item}) => 
+                    <Post item = {item}></Post> }
                 />
             </View>
         )
