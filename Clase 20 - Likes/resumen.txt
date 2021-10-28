@@ -1,0 +1,14 @@
+1-Generar un array de likes vacío al momento de la generación del posteo.
+
+2-Logica dentro del componente "Post":
+ a) Cantidad de likes.
+ b) Posibilidad de hacer like y dislike.
+ c) Post debería ser un componente de clase porque vamos a ir guardando estados (likes, liked)
+ d) Agregar un touchable opacity que al hacerle click permita likear o dislikear.
+ e) Para llamar a un posteo especifico 
+
+ let post = db.collection("posts").doc(<id del posteo>);
+
+ Para luego hacer un update del post con lo que figura en la documentacion:
+
+ https://firebase.google.com/docs/firestore/manage-data/add-data#update_elements_in_an_array
