@@ -29,7 +29,7 @@ export default class Home extends Component {
     render(){
         console.log(this.state.posts);
         return(
-            <View>
+            <View style = {styles.container}>
                 <Text> Home </Text>
                 <TouchableOpacity style = {styles.button} onPress={() => this.props.handleLogout()}>
                     <Text style = {styles.text}> Logout </Text>
