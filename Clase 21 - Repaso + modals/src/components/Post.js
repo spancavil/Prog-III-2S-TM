@@ -9,7 +9,8 @@ export default class Post extends Component{
         super(props);
         this.state = {
             liked: false,
-            likes: 0
+            likes: 0,
+            showModal: false,
         }
     }
 
@@ -55,6 +56,22 @@ export default class Post extends Component{
             })
         })
     }
+
+    //Muestra el modal
+    showModal(){
+        console.log('Mostrando modal')
+        this.setState({
+            showModal: true,
+        })
+    }
+    
+    //Cierra el modal
+    closeModal(){
+        console.log('Cerrando modal')
+        this.setState({
+            showModal: false,
+        })
+    }
     
     render(){
 
@@ -79,9 +96,37 @@ export default class Post extends Component{
                         </Text>
                     </TouchableOpacity>
                 }
-                <Modal>
+                <TouchableOpacity onPress={()=>{this.showModal()}}>
+                    <Text>
+                        Ver comentarios
+                    </Text>
+                </TouchableOpacity>
+                {
+                    this.state.showModal ?
 
-                </Modal>
+                        <Modal 
+                        animationType = "fade"
+                        transparent = {false}
+                        visible = {this.state.showModal}
+                        style = {styles.modal}
+                        >
+                            <View style={styles.modalView}>
+                                {/* Botón de cierre del modal */}
+                                <TouchableOpacity style={styles.closeModal} onPress={()=>{this.closeModal()}}>
+                                        <Text style={styles.modalText} >X</Text>
+                                </TouchableOpacity>
+                                <Text>
+                                    Aquí también irán los comentarios!  
+                                </Text>
+                                <Text>
+                                    Aquí también debe ir la posibilidad de agregar un comentario
+                                </Text>
+                            </View>
+
+                        </Modal>
+                        :
+                        null
+                }
             </View>
         )
     }
@@ -96,5 +141,26 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         padding: 5,
+    },
+    
+    closeModal:{
+        alignSelf: 'flex-end',
+        padding: 10,
+        backgroundColor: '#dc3545',
+        marginTop:2,
+        marginBotom: 10,
+        borderRadius: 4,
+    },
+
+    modalText:{
+        fontWeight: 'bold',
+        color:'#fff',
+    },
+    modalView:{
+        backgroundColor: 'green',
+        borderRadius: 10,
+    },
+    modal: {
+        border: 'none',
     }
 })
